@@ -3,363 +3,670 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CAC Servicios de Impermeabilizantes y Pintura</title>
+  <title>CAC Servicios | Impermeabilizantes y Pintura</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
+    :root {
+      --black:  #000000;
+      --dark:   #111111;
+      --dark2:  #1a1a1a;
+      --yellow: #ffe608;
+      --yellow2:#ffed4a;
+      --gray:   #666666;
+      --graylt: #f2f2f2;
+      --cream:  #fafaf5;
+      --white:  #ffffff;
     }
 
-    body {
-      background-color: #f8f9fa;
-      color: #333;
-    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'DM Sans',sans-serif; background:var(--white); color:var(--dark); overflow-x:hidden; }
 
+    /* ══ HEADER ══ */
     header {
-      background-color: #000000;
-      color: white;
-      text-align: center;
-      padding: 20px;
+      background:var(--black);
+      display:flex; align-items:center; justify-content:space-between;
+      padding:16px 56px;
+      position:sticky; top:0; z-index:1000;
+      border-bottom:2.5px solid var(--yellow);
     }
+    .logo-area { display:flex; align-items:center; gap:14px; }
+    .logo-area img { height:60px; object-fit:contain; }
+    .logo-tagline { font-size:0.7rem; letter-spacing:2.5px; text-transform:uppercase; color:var(--yellow); margin-top:3px; }
 
-    header img {
-      width: 700px;
-      height: 350px;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    nav { display:flex; gap:6px; align-items:center; }
+    nav a { color:rgba(255,255,255,0.72); padding:8px 18px; text-decoration:none; font-weight:500; font-size:0.88rem; border-radius:4px; transition:all 0.22s; }
+    nav a:hover { color:var(--yellow); background:rgba(255,230,8,0.08); }
+    nav .cta-nav { background:var(--yellow); color:var(--black); font-weight:700; padding:9px 22px; border-radius:6px; }
+    nav .cta-nav:hover { background:var(--yellow2); }
 
-    nav {
-      background-color: #424040;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
+    .menu-toggle { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; }
+    .menu-toggle span { display:block; width:26px; height:2px; background:var(--white); border-radius:2px; }
+    .mobile-nav { display:none; flex-direction:column; background:var(--dark2); padding:12px 24px 20px; border-bottom:2px solid var(--yellow); }
+    .mobile-nav a { color:rgba(255,255,255,0.8); padding:12px 0; text-decoration:none; font-size:1rem; font-weight:500; border-bottom:1px solid rgba(255,255,255,0.06); }
+    .mobile-nav a:last-child { border:none; color:var(--yellow); font-weight:700; }
 
-    nav a {
-      color: white;
-      padding: 15px 25px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background-color 0.3s;
-    }
-
-    nav a:hover {
-      background-color: #3a3a39;
-    }
-
-    section {
-      padding: 60px 20px;
-      text-align: center;
-    }
-
+    /* ══ HERO ══ */
     .hero {
-      background: url('impermeabilizante.jpg') center/cover no-repeat;
-      color: white;
-      padding: 120px 20px;
+      background:linear-gradient(135deg, #000 0%, #1a1a1a 60%, #222 100%);
+      min-height:90vh;
+      display:flex; align-items:center; justify-content:center;
+      text-align:center; padding:80px 20px;
+      position:relative; overflow:hidden;
+    }
+    .hero::before { content:''; position:absolute; inset:0; background:url('CAC_HERO_FONDO.png') center/cover no-repeat; opacity:0.1; }
+    .hero::after  { content:''; position:absolute; bottom:-1px; left:0; right:0; height:70px; background:var(--white); clip-path:polygon(0 100%,100% 0,100% 100%); }
+    .hero-content { position:relative; z-index:1; max-width:820px; }
+
+    .hero-logo {
+      height:120px;
+      object-fit:contain;
+      display:block;
+      margin:0 auto 24px;
+      filter:brightness(0) invert(1);
+      animation:fadeUp 0.7s ease both;
     }
 
-    .hero h1, .hero p {
-      color: black;
+    .hero-badge {
+      display:inline-block;
+      background:rgba(255,230,8,0.1);
+      border:1px solid var(--yellow);
+      color:var(--yellow);
+      font-size:0.75rem; letter-spacing:3px; text-transform:uppercase;
+      padding:7px 22px; border-radius:50px;
+      margin-bottom:28px;
+      animation:fadeUp 0.7s ease 0.1s both;
     }
 
     .hero h1 {
-      font-size: 2rem;
-      margin-bottom: 10px;
+      font-family:'Playfair Display',serif;
+      font-size:clamp(2.2rem,5vw,3.6rem);
+      color:var(--white); line-height:1.2; margin-bottom:22px;
+      animation:fadeUp 0.7s ease 0.2s both;
     }
+    .hero h1 span { color:var(--yellow); }
 
     .hero p {
-      font-size: 1.2rem;
-      margin-top: 5px;
+      font-size:1.05rem; color:rgba(255,255,255,0.72);
+      line-height:1.8; margin-bottom:40px;
+      animation:fadeUp 0.7s ease 0.32s both;
     }
 
-    /* Galería */
-    .galeria {
-      background-color: #626262;
-      padding: 60px 20px;
-      text-align: center;
-    }
+    .hero-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; animation:fadeUp 0.7s ease 0.44s both; }
+    .btn-primary  { background:var(--yellow); color:var(--black); font-weight:700; padding:14px 34px; border-radius:6px; text-decoration:none; font-size:0.95rem; transition:all 0.22s; display:inline-block; }
+    .btn-primary:hover { background:var(--yellow2); transform:translateY(-2px); }
+    .btn-secondary { background:transparent; color:var(--white); border:1.5px solid rgba(255,255,255,0.35); font-weight:500; padding:14px 34px; border-radius:6px; text-decoration:none; font-size:0.95rem; transition:all 0.22s; display:inline-block; }
+    .btn-secondary:hover { border-color:var(--yellow); color:var(--yellow); }
 
-    .galeria h2 {
-      color: #e0e0e0;
-      margin-bottom: 30px;
-    }
+    /* ══ STATS ══ */
+    .stats-bar { background:var(--black); display:flex; justify-content:center; flex-wrap:wrap; }
+    .stat-item { text-align:center; padding:26px 48px; border-right:1px solid rgba(255,255,255,0.07); }
+    .stat-item:last-child { border-right:none; }
+    .stat-num { font-family:'Playfair Display',serif; font-size:2.2rem; color:var(--yellow); font-weight:900; display:block; }
+    .stat-label { font-size:0.77rem; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:1.5px; margin-top:4px; }
+
+    /* ══ HELPERS ══ */
+    .section-label { font-size:0.72rem; letter-spacing:3px; text-transform:uppercase; color:var(--yellow); font-weight:700; margin-bottom:10px; display:block; }
+    .section-title { font-family:'Playfair Display',serif; font-size:clamp(1.8rem,3.5vw,2.6rem); color:var(--dark); line-height:1.22; margin-bottom:14px; }
+    .section-sub   { color:var(--gray); font-size:0.98rem; line-height:1.75; max-width:560px; }
+    .divider { width:48px; height:3px; background:var(--yellow); margin:18px 0 30px; }
+    .divider.center { margin:18px auto 30px; }
+
+    /* ══ SERVICIOS ══ */
+    #servicios { padding:100px 60px; background:var(--white); }
+    .servicios-header { text-align:center; margin-bottom:60px; }
+    .servicios-header .section-sub { margin:0 auto; }
+
+    .servicios-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:26px; max-width:1160px; margin:0 auto; }
+    .servicio-card { background:var(--white); border:1px solid #e4e4e4; border-radius:12px; padding:34px 30px; position:relative; overflow:hidden; transition:all 0.3s; }
+    .servicio-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:var(--yellow); transform:scaleX(0); transform-origin:left; transition:transform 0.32s ease; }
+    .servicio-card:hover { box-shadow:0 18px 44px rgba(0,0,0,0.1); transform:translateY(-5px); border-color:transparent; }
+    .servicio-card:hover::before { transform:scaleX(1); }
+    .servicio-icon { width:54px; height:54px; background:var(--black); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.55rem; margin-bottom:20px; }
+    .servicio-card h3 { font-family:'Playfair Display',serif; font-size:1.18rem; color:var(--dark); margin-bottom:10px; }
+    .servicio-card p  { color:var(--gray); font-size:0.88rem; line-height:1.7; }
+    .servicio-tags { display:flex; flex-wrap:wrap; gap:7px; margin-top:16px; }
+    .tag { font-size:0.7rem; background:var(--graylt); color:var(--dark); padding:4px 12px; border-radius:20px; font-weight:600; }
+
+    /* ══ GALERÍA ══ */
+    #galeria { padding:100px 60px; background:var(--cream); }
+    .galeria-header { text-align:center; margin-bottom:48px; }
+    .galeria-header .section-sub { margin:0 auto; }
 
     .galeria-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 15px;
-      justify-items: center;
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+      gap:14px;
+      max-width:1160px;
+      margin:0 auto;
     }
 
-    .galeria-grid img, .galeria-grid video {
-      width: 250px;
-      height: 250px;
-      object-fit: cover;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
+    .img-wrap { position:relative; overflow:hidden; border-radius:10px; aspect-ratio:1; cursor:pointer; }
+    .img-wrap img { width:100%; height:100%; object-fit:cover; transition:transform 0.38s ease; display:block; }
+    .img-wrap:hover img { transform:scale(1.07); }
+    .img-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(0,0,0,0.72) 0%,transparent 55%); opacity:0; transition:opacity 0.28s; display:flex; align-items:flex-end; padding:14px; }
+    .img-wrap:hover .img-overlay { opacity:1; }
+    .img-overlay span { color:var(--black); background:var(--yellow); font-size:0.78rem; font-weight:700; padding:5px 14px; border-radius:20px; }
 
-    .galeria-grid img:hover, .galeria-grid video:hover {
-      transform: scale(1.05);
-    }
+    /* ══ MODAL ══ */
+    .modal { display:none; position:fixed; z-index:9999; inset:0; background:rgba(0,0,0,0.97); flex-direction:column; justify-content:center; align-items:center; }
 
-    /* Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 9999;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.95);
-      justify-content: center;
-      align-items: center;
+    .modal-topbar {
+      position:absolute; top:0; left:0; right:0;
+      display:flex; justify-content:space-between; align-items:center;
+      padding:16px 26px;
+      background:linear-gradient(to bottom,rgba(0,0,0,0.6),transparent);
     }
+    .modal-counter { color:rgba(255,255,255,0.65); font-size:0.85rem; letter-spacing:1px; }
+    .modal-counter b { color:var(--yellow); }
 
-    .modal-contenido {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 10px;
-      object-fit: contain;
+    .btn-cerrar { background:none; border:none; color:rgba(255,255,255,0.65); font-size:34px; cursor:pointer; line-height:1; padding:4px 8px; transition:color 0.2s; }
+    .btn-cerrar:hover { color:var(--yellow); }
+
+    .modal-img-wrap { display:flex; align-items:center; justify-content:center; width:100%; flex:1; padding:70px 90px; }
+    .modal-contenido { max-width:100%; max-height:80vh; border-radius:8px; object-fit:contain; box-shadow:0 30px 80px rgba(0,0,0,0.6); transition:opacity 0.18s; }
+
+    .flecha { position:absolute; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.08); border:1.5px solid rgba(255,255,255,0.15); color:rgba(255,255,255,0.75); font-size:22px; cursor:pointer; padding:13px 17px; border-radius:50%; transition:all 0.22s; line-height:1; }
+    .flecha:hover { background:var(--yellow); color:var(--black); border-color:var(--yellow); }
+    .flecha.izquierda { left:3%; }
+    .flecha.derecha   { right:3%; }
+
+    .modal-thumbs {
+      position:absolute; bottom:20px;
+      display:flex; gap:7px;
+      max-width:90vw; overflow-x:auto;
+      padding:4px; scrollbar-width:none;
     }
+    .modal-thumbs::-webkit-scrollbar { display:none; }
+    .m-thumb { width:46px; height:46px; border-radius:7px; object-fit:cover; cursor:pointer; opacity:0.4; border:2px solid transparent; flex-shrink:0; transition:all 0.2s; }
+    .m-thumb.activo { opacity:1; border-color:var(--yellow); }
+    .m-thumb:hover  { opacity:0.75; }
 
-    .cerrar {
-      position: absolute;
-      top: 20px;
-      right: 35px;
-      color: #ffffff;
-      font-size: 40px;
-      font-weight: bold;
-      cursor: pointer;
+    /* ══ CONTACTO ══ */
+    #contacto { padding:100px 60px; background:var(--white); }
+    .contacto-inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
+
+    .contact-item { display:flex; align-items:flex-start; gap:14px; margin-bottom:22px; }
+    .contact-icon { width:44px; height:44px; background:var(--graylt); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
+    .contact-item strong { display:block; color:var(--dark); font-weight:600; margin-bottom:2px; }
+    .contact-item a, .contact-item span { color:var(--gray); text-decoration:none; font-size:0.9rem; }
+    .contact-item a:hover { color:var(--dark); }
+
+    .wa-box { background:#f8f8f8; border:1.5px solid #e5e5e5; border-radius:14px; padding:24px; text-align:center; margin-top:24px; }
+    .wa-box img { width:150px; height:150px; border-radius:8px; }
+    .wa-box p { font-size:0.82rem; color:var(--gray); margin-top:10px; }
+    .wa-btn { display:inline-flex; align-items:center; gap:8px; background:#25d366; color:white; padding:10px 22px; border-radius:8px; text-decoration:none; font-weight:700; font-size:0.88rem; margin-top:14px; transition:background 0.2s; }
+    .wa-btn:hover { background:#1dbe5a; }
+
+    .form-head { margin-bottom:26px; }
+    .form-head h3 { font-family:'Playfair Display',serif; font-size:1.6rem; color:var(--dark); margin-bottom:6px; }
+    .form-head p  { color:var(--gray); font-size:0.9rem; line-height:1.65; }
+
+    .form-group { display:flex; flex-direction:column; gap:5px; margin-bottom:15px; }
+    .form-group label { font-size:0.76rem; font-weight:700; letter-spacing:0.8px; color:var(--dark); text-transform:uppercase; }
+    input, textarea, select {
+      padding:12px 14px; border:1.5px solid #ddd; border-radius:8px;
+      font-size:0.92rem; font-family:'DM Sans',sans-serif;
+      transition:border-color 0.25s, box-shadow 0.25s;
+      outline:none; background:var(--white); color:var(--dark);
     }
+    input:focus, textarea:focus, select:focus { border-color:var(--yellow); box-shadow:0 0 0 3px rgba(255,230,8,0.15); }
+    textarea { resize:vertical; min-height:130px; }
 
-    /* Flechas de navegación */
-    .flecha {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      color: white;
-      font-size: 50px;
-      font-weight: bold;
-      cursor: pointer;
-      user-select: none;
-      background: rgba(0,0,0,0.3);
-      border-radius: 50%;
-      padding: 10px 15px;
+    .btn-send {
+      background:var(--black); color:var(--yellow);
+      border:none; padding:14px 28px; border-radius:8px;
+      font-size:0.95rem; font-family:'DM Sans',sans-serif; font-weight:700;
+      cursor:pointer; transition:all 0.25s; width:100%; margin-top:4px;
     }
+    .btn-send:hover { background:var(--yellow); color:var(--black); }
+    .btn-send:disabled { opacity:0.6; cursor:not-allowed; }
 
-    .flecha.izquierda {
-      left: 5%;
+    .msg-success { display:none; background:#f0fdf4; border:1.5px solid #86efac; border-radius:12px; padding:32px; text-align:center; }
+    .msg-success.show { display:block; }
+    .msg-success .ico { font-size:2.6rem; margin-bottom:10px; }
+    .msg-success h3 { font-family:'Playfair Display',serif; color:#166534; margin-bottom:6px; }
+    .msg-success p  { color:#15803d; font-size:0.9rem; }
+
+    .msg-error { display:none; background:#fef2f2; border:1.5px solid #fca5a5; border-radius:8px; padding:12px 16px; color:#dc2626; font-size:0.87rem; margin-top:10px; text-align:center; }
+    .msg-error.show { display:block; }
+
+    /* ══ FOOTER ══ */
+    footer { background:var(--black); color:rgba(255,255,255,0.5); text-align:center; padding:36px 20px; border-top:2px solid var(--yellow); }
+    .footer-brand { font-family:'Playfair Display',serif; color:var(--yellow); font-size:1.05rem; margin-bottom:8px; }
+    footer p { font-size:0.83rem; line-height:1.9; }
+
+    /* ══ ANIMATIONS ══ */
+    @keyframes fadeUp { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
+    .reveal { opacity:0; transform:translateY(30px); transition:opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity:1; transform:none; }
+
+    /* ══ RESPONSIVE ══ */
+    @media (max-width: 960px) {
+      header { padding:14px 24px; }
+      #servicios, #galeria, #contacto { padding:70px 24px; }
+      .contacto-inner { grid-template-columns:1fr; gap:50px; }
+      .stat-item { padding:20px 24px; }
     }
-
-    .flecha.derecha {
-      right: 5%;
-    }
-
-    @media (max-width: 768px) {
-      header img {
-        width: 90%;
-        height: auto;
-      }
-      .galeria-grid img, .galeria-grid video {
-        width: 150px;
-        height: 150px;
-      }
-      .modal-contenido {
-        width: 95%;
-        max-height: 85vh;
-      }
-      .flecha {
-        font-size: 35px;
-      }
-    }
-
-    /* Contacto */
-    .contacto {
-      background-color: #fafafa;
-      padding-bottom: 60px;
-    }
-
-    .contacto form {
-      max-width: 500px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    input, textarea {
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 1rem;
-    }
-
-    button {
-      background-color: #838383;
-      color: white;
-      border: none;
-      padding: 12px;
-      border-radius: 5px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    button:hover {
-      background-color: #727272;
-    }
-
-    .qr-contacto {
-      margin-top: 30px;
-      text-align: center;
-    }
-
-    .qr-contacto img {
-      width: 200px;
-      height: 200px;
-    }
-
-    footer {
-      background-color: #5e5e5e;
-      color: white;
-      text-align: center;
-      padding: 20px;
+    @media (max-width: 640px) {
+      nav { display:none; }
+      .menu-toggle { display:flex; }
+      .galeria-grid { grid-template-columns:repeat(2,1fr); }
+      .hero-btns { flex-direction:column; align-items:center; }
+      .hero-logo { height:90px; }
+      .flecha { display:none; }
     }
   </style>
 </head>
-
 <body>
 
-  <header>
-    <img src="CAC (1).png" alt="Logo CAC Servicios">
-    <h2 style="color: rgb(255, 255, 255); margin-top: 10px;">23 años de Experiencia</h2>
-  </header>
-
+<!-- ══ HEADER ══ -->
+<header>
+  <div class="logo-area">
+    <img src="CAC (1).png" alt="Logo CAC">
+    <div><div class="logo-tagline">Pintura e Impermeabilizantes</div></div>
+  </div>
   <nav>
     <a href="#inicio">Inicio</a>
+    <a href="#servicios">Servicios</a>
     <a href="#galeria">Galería</a>
-    <a href="#contacto">Contacto</a>
+    <a href="#contacto" class="cta-nav">Cotizar</a>
   </nav>
-
-  <section id="inicio" class="hero">
-    <h1>Empresa líder en el ramo: Residencial, Comercial e Industrial</h1>
-    <h1></h1>
-   <p style="max-width: 900px; margin: 0 auto 16px auto; text-align: justify; line-height: 1.6; font-size: 18px;">
-  En CAC Servicios de Pintura e Impermeabilizantes nos especializamos en ofrecer soluciones expertas de pintura e impermeabilización adaptadas a las necesidades de cada proyecto. 
-  Trabajamos con sistemas de pintura para estructuras, muros tilt-up, tablaroca, muros emplastados y herrerías, utilizando materiales de alta calidad como esmaltes, pinturas vinílicas, epóxicas y poliuretanos. 
-  Además, realizamos impermeabilizaciones con sistemas fríos y calientes, ideales para cisternas, muros y cubiertas de lámina, concreto o madera.
-</p>
-
-<p style="max-width: 900px; margin: 0 auto; text-align: justify; line-height: 1.6; font-size: 18px;">
-  Contamos con mano de obra calificada, maquinaria y herramientas especializadas que garantizan una ejecución eficiente y resultados duraderos. 
-  Ofrecemos cotizaciones gratuitas y trabajamos dentro y fuera de la ciudad de Tijuana, siempre con el compromiso de superar las expectativas de nuestros clientes y ofrecer resultados de la más alta calidad.
-</p>
-
-
-
-  </section>
-
-  <!-- Galería -->
-  <section id="galeria" class="galeria">
-    <h2>Proyectos Recientes</h2>
-    <div class="galeria-grid">
-      <img src="imagen7.jpg" alt="Proyecto 7">
-      <img src="imagen8.jpg" alt="Proyecto 8">
-      <img src="imagen9.jpg" alt="Proyecto 9">
-      <img src="imagen10.jpg" alt="Proyecto 10">
-      <img src="imagen11.jpg" alt="Proyecto 11">
-      <img src="imagen12.jpg" alt="Proyecto 12">
-      <img src="imagen13.jpeg" alt="Proyecto 13">
-      <img src="imagen14.jpeg" alt="Proyecto 14">
-      <img src="imagen15.jpeg" alt="Proyecto 15">
-      <img src="imagen16.jpeg" alt="Proyecto 16">
-      <img src="imagen17.jpeg" alt="Proyecto 17">
-      <img src="imagen18.jpg" alt="Proyecto 18">
-      <img src="imagen19.jpg" alt="Proyecto 19">
-      <img src="imagen20.jpeg" alt="Proyecto 20">
-      <img src="imagen21.jpeg" alt="Proyecto 21">
-      <img src="imagen22.jpeg" alt="Proyecto 22">
-      <img src="imagen23.jpeg" alt="Proyecto 23">
-      <img src="imagen25.jpeg" alt="Proyecto 25">
-      <img src="imagen26.jpeg" alt="Proyecto 26">
-      <img src="imagen27.jpeg" alt="Proyecto 27">
-    </div>
-  </section>
-
-  <!-- Modal -->
-  <div class="modal" id="modal">
-    <span class="cerrar">&times;</span>
-    <span class="flecha izquierda">&#10094;</span>
-    <span class="flecha derecha">&#10095;</span>
-    <img class="modal-contenido" id="modal-img">
+  <div class="menu-toggle" id="menuToggle">
+    <span></span><span></span><span></span>
   </div>
+</header>
+<div class="mobile-nav" id="mobileNav">
+  <a href="#inicio"    onclick="closeMobileNav()">Inicio</a>
+  <a href="#servicios" onclick="closeMobileNav()">Servicios</a>
+  <a href="#galeria"   onclick="closeMobileNav()">Galería</a>
+  <a href="#contacto"  onclick="closeMobileNav()">Cotizar gratis →</a>
+</div>
 
-  <!-- Contacto -->
-  <section id="contacto" class="contacto">
-    <h2>Contáctanos</h2>
-    <form id="formulario" action="https://formspree.io/f/movklgdp" method="POST">
-      <input type="email" name="email" placeholder="Tu correo" required>
-      <textarea name="mensaje" rows="5" placeholder="Tu mensaje o solicitud de cotización" required></textarea>
-      <button type="submit">Enviar</button>
-    </form>
-
-  <h3>O escríbenos directamente por WhatsApp:</h3>
-  <a href="https://wa.me/526643549496" target="_blank" rel="noopener noreferrer">
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://wa.me/526643549496" alt="QR WhatsApp CAC">
-  </a>
-  <p>Escanea el código 📱</p>
+<!-- ══ HERO ══ -->
+<section id="inicio" class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">✦ 23 Años de Experiencia ✦</div>
+    <h1>Empresa líder en<br><span>Pintura e Impermeabilización</span></h1>
+    <p>Soluciones profesionales para proyectos Residenciales, Comerciales e Industriales en Tijuana y toda la región. Calidad garantizada, mano de obra calificada.</p>
+    <div class="hero-btns">
+      <a href="#contacto" class="btn-primary">Solicitar Cotización Gratuita</a>
+      <a href="#galeria"  class="btn-secondary">Ver Proyectos</a>
+    </div>
+  </div>
 </section>
 
+<!-- ══ STATS ══ -->
+<div class="stats-bar">
+  <div class="stat-item"><span class="stat-num">23+</span><div class="stat-label">Años de experiencia</div></div>
+  <div class="stat-item"><span class="stat-num">500+</span><div class="stat-label">Proyectos completados</div></div>
+  <div class="stat-item"><span class="stat-num">3</span><div class="stat-label">Sectores atendidos</div></div>
+  <div class="stat-item"><span class="stat-num">100%</span><div class="stat-label">Cotizaciones gratuitas</div></div>
+</div>
 
-  <footer>
-    <p>📧 cac.aplicacionesdepintura@gmail.com | ☎️ 664 354 9496</p>
-    <p>&copy; 2025 CAC Servicios de Pintura e Impermeabilizantes</p>
-  </footer>
+<!-- ══ SERVICIOS ══ -->
+<section id="servicios">
+  <div class="servicios-header reveal">
+    <span class="section-label">Lo que hacemos</span>
+    <h2 class="section-title">Nuestros Servicios</h2>
+    <p class="section-sub">Ofrecemos soluciones integrales con materiales de alta calidad y mano de obra especializada para todo tipo de proyecto.</p>
+    <div class="divider center"></div>
+  </div>
+  <div class="servicios-grid">
+    <div class="servicio-card reveal">
+      <div class="servicio-icon">🏗️</div>
+      <h3>Pintura Estructural</h3>
+      <p>Aplicación en estructuras metálicas, muros tilt-up y concreto expuesto con acabados de alta durabilidad para entornos industriales y comerciales.</p>
+      <div class="servicio-tags"><span class="tag">Epóxico</span><span class="tag">Poliuretano</span><span class="tag">Anticorrosivo</span></div>
+    </div>
+    <div class="servicio-card reveal">
+      <div class="servicio-icon">🏠</div>
+      <h3>Pintura Residencial</h3>
+      <p>Pintura interior y exterior para viviendas con pinturas vinílicas, acrílicas y esmaltes de primera calidad para resultados impecables.</p>
+      <div class="servicio-tags"><span class="tag">Vinílica</span><span class="tag">Acrílica</span><span class="tag">Esmaltes</span></div>
+    </div>
+    <div class="servicio-card reveal">
+      <div class="servicio-icon">💧</div>
+      <h3>Impermeabilización en Frío</h3>
+      <p>Sistemas en frío para terrazas, losas, cubiertas y cisternas. Protección efectiva contra filtraciones con materiales de última generación.</p>
+      <div class="servicio-tags"><span class="tag">Terrazas</span><span class="tag">Cisternas</span><span class="tag">Losas</span></div>
+    </div>
+    <div class="servicio-card reveal">
+      <div class="servicio-icon">🔥</div>
+      <h3>Impermeabilización en Caliente</h3>
+      <p>Membranas bituminosas y asfalto modificado para cubiertas industriales y comerciales con máxima protección y durabilidad.</p>
+      <div class="servicio-tags"><span class="tag">Membranas</span><span class="tag">Asfalto</span><span class="tag">Industrial</span></div>
+    </div>
+    <div class="servicio-card reveal">
+      <div class="servicio-icon">🏢</div>
+      <h3>Tablaroca y Muros</h3>
+      <p>Pintura especializada para muros de tablaroca y emplastados con preparación de superficie y selladores de alto rendimiento.</p>
+      <div class="servicio-tags"><span class="tag">Tablaroca</span><span class="tag">Selladores</span><span class="tag">Acabados</span></div>
+    </div>
+    <div class="servicio-card reveal">
+      <div class="servicio-icon">⚙️</div>
+      <h3>Herrería y Metales</h3>
+      <p>Tratamiento y pintura de estructuras metálicas, herrería, rejas y puertas con anticorrosivos y esmaltes para protección prolongada.</p>
+      <div class="servicio-tags"><span class="tag">Anticorrosivo</span><span class="tag">Esmalte</span><span class="tag">Estructuras</span></div>
+    </div>
+  </div>
+</section>
 
-  <script>
-    const modal = document.getElementById("modal");
-    const modalImg = document.getElementById("modal-img");
-    const imgs = document.querySelectorAll(".galeria-grid img");
-    const cerrar = document.querySelector(".cerrar");
-    const flechaIzq = document.querySelector(".izquierda");
-    const flechaDer = document.querySelector(".derecha");
-    let indiceActual = 0;
+<!-- ══ GALERÍA ══ -->
+<section id="galeria">
+  <div class="galeria-header reveal">
+    <span class="section-label">Nuestro portafolio</span>
+    <h2 class="section-title">Proyectos Recientes</h2>
+    <p class="section-sub">Cada proyecto refleja nuestro compromiso con la calidad. Haz clic en cualquier imagen para verla completa.</p>
+    <div class="divider center"></div>
+  </div>
 
-    // Abrir imagen
-    imgs.forEach((img, index) => {
-      img.addEventListener("click", () => {
-        modal.style.display = "flex";
-        modalImg.src = img.src;
-        indiceActual = index;
+  <div class="galeria-grid" id="galeriaGrid">
+    <div class="img-wrap"><img src="imagen7.jpg"   alt="Proyecto 1"  loading="lazy"><div class="img-overlay"><span>Ver imagen</span></div></div>
+    <div class="img-wrap"><img src="imagen8.jpg"   alt="Proyecto 2"  loading="lazy"><div class="img-overlay"><span>Ver imagen</span></div></div>
+    <div class="img-wrap"><img src="imagen9.jpg"   alt="Proyecto 3"  loading="lazy"><div class="img-overlay"><span>Ver imagen</span></div></div>
+    <div class="img-wrap"><img src="imagen10.jpg"  alt="Proyecto 4"  loading="lazy"><div class="img-overlay"><span>Ver imagen</span></div></div>
+    <div class="img-wrap"><img src="imagen11.jpg"  alt="Proyecto 5"  loading="lazy"><div class="img-overlay"><span>Ver imagen</span></div></div>
+    <div class="img-wrap"><img src="imagen12.jpg"  alt="Proyecto 6"  loading="lazy"><div class="img-overlay"><span>Ver imagen</span></div></div>
+    <div class="img-wrap"><img src="imagen13.jpeg" alt="Proyecto 7"  loading="lazy"><div class="img-overlay"><span>Ver imagen</span></div></div>
+    <div class="img-wrap"><img src="imagen14.jpeg" alt="Proyecto 8"  loading="lazy"><div class="img-overlay"><span>Ver imagen</span></div></div>
+    <div class="img-wrap"><img src="imagen15.jpeg" alt="Proyecto 9"  loading="lazy"><div class="img-overlay"><span>Ver imagen</span></div></div>
+    <div class="img-wrap"><img src="imagen16.jpeg" alt="Proyecto 10" loading="lazy"><div class="img-overlay"><span>Ver imagen</span></div></div>
+    <div class="img-wrap"><img src="imagen17.jpeg" alt="Proyecto 11" loading="lazy"><div class="img-overlay"><span>Ver imagen</span></div></div>
+    <div class="img-wrap"><img src="imagen18.jpg"  alt="Proyecto 12" loading="lazy"><div class="img-overlay"><span>Ver imagen</span></div></div>
+    <div class="img-wrap"><img src="imagen19.jpg"  alt="Proyecto 13" loading="lazy"><div class="img-overlay"><span>Ver imagen</span></div></div>    <div class="img-wrap"><img src="imagen21.jpeg" alt="Proyecto 15" loading="lazy"><div class="img-overlay"><span>Ver imagen</span></div></div>
+    <div class="img-wrap"><img src="imagen22.jpeg" alt="Proyecto 16" loading="lazy"><div class="img-overlay"><span>Ver imagen</span></div></div>
+    <div class="img-wrap"><img src="imagen23.jpeg" alt="Proyecto 17" loading="lazy"><div class="img-overlay"><span>Ver imagen</span></div></div>
+    <div class="img-wrap"><img src="imagen25.jpeg" alt="Proyecto 18" loading="lazy"><div class="img-overlay"><span>Ver imagen</span></div></div>
+    <div class="img-wrap"><img src="imagen26.jpeg" alt="Proyecto 19" loading="lazy"><div class="img-overlay"><span>Ver imagen</span></div></div>
+    <div class="img-wrap"><img src="imagen27.jpeg" alt="Proyecto 20" loading="lazy"><div class="img-overlay"><span>Ver imagen</span></div></div>
+    <div class="img-wrap"><img src="IMAGEN.1.jpg" alt="Proyecto 20" loading="lazy"><div class="img-overlay"><span>Ver imagen</span></div></div>
+    <div class="img-wrap"><img src="IMAGEN.2.jpg" alt="Proyecto 20" loading="lazy"><div class="img-overlay"><span>Ver imagen</span></div></div>
+    <div class="img-wrap"><img src="IMAGEN.3.jpg" alt="Proyecto 20" loading="lazy"><div class="img-overlay"><span>Ver imagen</span></div></div>
+    <div class="img-wrap"><img src="IMAGEN.4.jpg" alt="Proyecto 20" loading="lazy"><div class="img-overlay"><span>Ver imagen</span></div></div>
+    <div class="img-wrap"><img src="IMAGEN.5.jpg" alt="Proyecto 20" loading="lazy"><div class="img-overlay"><span>Ver imagen</span></div></div>
+  </div>
+</section>
+
+<!-- ══ MODAL ══ -->
+<div class="modal" id="modal" role="dialog" aria-modal="true">
+  <div class="modal-topbar">
+    <div class="modal-counter">Imagen <b id="mCurrent">1</b> de <b id="mTotal">20</b></div>
+    <button class="btn-cerrar" id="btnCerrar" aria-label="Cerrar">&times;</button>
+  </div>
+
+  <div class="modal-img-wrap">
+    <img class="modal-contenido" id="modalImg" alt="">
+  </div>
+
+  <button class="flecha izquierda" id="btnPrev" aria-label="Anterior">&#10094;</button>
+  <button class="flecha derecha"   id="btnNext" aria-label="Siguiente">&#10095;</button>
+
+  <div class="modal-thumbs" id="modalThumbs"></div>
+</div>
+
+<!-- ══ CONTACTO ══ -->
+<section id="contacto">
+  <div class="contacto-inner">
+
+    <!-- Info -->
+    <div class="reveal">
+      <span class="section-label">Hablemos</span>
+      <h2 class="section-title">Contáctanos</h2>
+      <div class="divider"></div>
+      <p style="color:var(--gray);font-size:0.96rem;line-height:1.75;margin-bottom:32px;">
+        Atendemos proyectos dentro y fuera de Tijuana. Cuéntanos tu proyecto y te enviamos una propuesta personalizada sin costo.
+      </p>
+
+      <div class="contact-item">
+        <div class="contact-icon">📧</div>
+        <div>
+          <strong>Correo electrónico</strong>
+          <a href="mailto:cac.aplicacionesdepintura@gmail.com">cac.aplicacionesdepintura@gmail.com</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div>
+          <strong>Teléfono / WhatsApp</strong>
+          <a href="tel:+526643549496">664 354 9496</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div>
+          <strong>Cobertura</strong>
+          <span>Tijuana y toda la región</span>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🕐</div>
+        <div>
+          <strong>Horario de atención</strong>
+          <span>Lunes a Domingo · 24 horas</span>
+        </div>
+      </div>
+
+      <div class="wa-box">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://wa.me/526643549496&bgcolor=ffffff&color=000000&margin=10" alt="QR WhatsApp CAC">
+        <p>Escanea para escribirnos directo por WhatsApp</p>
+        <a href="https://wa.me/526643549496" target="_blank" rel="noopener noreferrer" class="wa-btn">💬 Abrir WhatsApp</a>
+      </div>
+    </div>
+
+    <!-- Formulario -->
+    <div class="reveal">
+      <div class="form-head">
+        <h3>Solicita tu Cotización</h3>
+        <p>Completa el formulario y te respondemos a la brevedad con una propuesta sin compromiso.</p>
+      </div>
+
+      <div id="formWrap">
+        <form id="contactForm" novalidate>
+          <div class="form-group">
+            <label for="fnombre">Nombre completo *</label>
+            <input type="text" id="fnombre" name="nombre" placeholder="Tu nombre completo" required>
+          </div>
+          <div class="form-group">
+            <label for="femail">Correo electrónico *</label>
+            <input type="email" id="femail" name="email" placeholder="ejemplo@correo.com" required>
+          </div>
+          <div class="form-group">
+            <label for="ftel">Teléfono</label>
+            <input type="tel" id="ftel" name="telefono" placeholder="664 000 0000">
+          </div>
+          <div class="form-group">
+            <label for="fservicio">Tipo de servicio</label>
+            <select id="fservicio" name="servicio">
+              <option value="">— Selecciona un servicio —</option>
+              <option>Pintura Estructural / Industrial</option>
+              <option>Pintura Residencial</option>
+              <option>Impermeabilización en Frío</option>
+              <option>Impermeabilización en Caliente</option>
+              <option>Tablaroca y Muros</option>
+              <option>Herrería y Metales</option>
+              <option>Otro / Consulta general</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="fmensaje">Detalles del proyecto *</label>
+            <textarea id="fmensaje" name="mensaje" placeholder="Describe el trabajo, área aproximada, ubicación, fecha estimada..." required></textarea>
+          </div>
+          <button type="submit" class="btn-send" id="btnEnviar">Enviar solicitud →</button>
+          <div class="msg-error" id="msgError">Ocurrió un error. Por favor intenta de nuevo o escríbenos directamente por WhatsApp.</div>
+        </form>
+      </div>
+
+      <div class="msg-success" id="msgSuccess">
+        <div class="ico">✅</div>
+        <h3>¡Mensaje enviado!</h3>
+        <p>Gracias por contactarnos. Te responderemos a la brevedad con tu cotización personalizada.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-brand">CAC Servicios de Pintura e Impermeabilizantes</div>
+  <p>📧 cac.aplicacionesdepintura@gmail.com &nbsp;|&nbsp; ☎️ 664 354 9496</p>
+  <p style="margin-top:10px;font-size:0.76rem;opacity:0.6;">&copy; <span id="anio"></span> CAC Servicios · Tijuana, Baja California · Todos los derechos reservados</p>
+</footer>
+
+<script>
+  /* ── AÑO AUTOMÁTICO ── */
+  document.getElementById('anio').textContent = new Date().getFullYear();
+
+  /* ── MOBILE NAV ── */
+  document.getElementById('menuToggle').addEventListener('click', () => {
+    const mn = document.getElementById('mobileNav');
+    mn.style.display = mn.style.display === 'flex' ? 'none' : 'flex';
+  });
+  function closeMobileNav() { document.getElementById('mobileNav').style.display = 'none'; }
+
+  /* ── GALERÍA + MODAL ── */
+  const modal       = document.getElementById('modal');
+  const modalImg    = document.getElementById('modalImg');
+  const mCurrent    = document.getElementById('mCurrent');
+  const mTotal      = document.getElementById('mTotal');
+  const thumbsWrap  = document.getElementById('modalThumbs');
+  const btnNext     = document.getElementById('btnNext');
+  const btnPrev     = document.getElementById('btnPrev');
+  const btnCerrar   = document.getElementById('btnCerrar');
+
+  const wraps = Array.from(document.querySelectorAll('.galeria-grid .img-wrap'));
+  let idx = 0;
+
+  // Construir thumbnails una sola vez
+  wraps.forEach((w, i) => {
+    const src = w.querySelector('img').src;
+    const t = document.createElement('img');
+    t.src = src;
+    t.className = 'm-thumb';
+    t.dataset.i = i;
+    t.addEventListener('click', () => goTo(i));
+    thumbsWrap.appendChild(t);
+  });
+  mTotal.textContent = wraps.length;
+
+  function abrirModal(i) {
+    idx = i;
+    renderModal();
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function cerrarModal() {
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  function goTo(n) {
+    idx = (n + wraps.length) % wraps.length;
+    renderModal();
+  }
+
+  function renderModal() {
+    const img = wraps[idx].querySelector('img');
+    modalImg.style.opacity = '0';
+    setTimeout(() => {
+      modalImg.src = img.src;
+      modalImg.alt = img.alt;
+      modalImg.style.opacity = '1';
+    }, 140);
+    mCurrent.textContent = idx + 1;
+    document.querySelectorAll('.m-thumb').forEach((t, i) => t.classList.toggle('activo', i === idx));
+    const at = thumbsWrap.querySelector('.m-thumb.activo');
+    if (at) at.scrollIntoView({ behavior:'smooth', inline:'center', block:'nearest' });
+  }
+
+  // Clicks en imágenes
+  wraps.forEach((w, i) => w.addEventListener('click', () => abrirModal(i)));
+
+  btnNext.addEventListener('click',   () => goTo(idx + 1));
+  btnPrev.addEventListener('click',   () => goTo(idx - 1));
+  btnCerrar.addEventListener('click', cerrarModal);
+  modal.addEventListener('click', e => { if (e.target === modal) cerrarModal(); });
+
+  // Teclado
+  document.addEventListener('keydown', e => {
+    if (modal.style.display !== 'flex') return;
+    if (e.key === 'ArrowRight') goTo(idx + 1);
+    if (e.key === 'ArrowLeft')  goTo(idx - 1);
+    if (e.key === 'Escape')     cerrarModal();
+  });
+
+  // Swipe en móvil
+  let swipeX = 0;
+  modal.addEventListener('touchstart', e => { swipeX = e.changedTouches[0].clientX; }, { passive:true });
+  modal.addEventListener('touchend',   e => {
+    const diff = swipeX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) diff > 0 ? goTo(idx + 1) : goTo(idx - 1);
+  });
+
+  /* ── FORMULARIO ── */
+  const form       = document.getElementById('contactForm');
+  const btnEnviar  = document.getElementById('btnEnviar');
+  const msgSuccess = document.getElementById('msgSuccess');
+  const msgError   = document.getElementById('msgError');
+  const formWrap   = document.getElementById('formWrap');
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    msgError.classList.remove('show');
+
+    const nombre  = document.getElementById('fnombre').value.trim();
+    const email   = document.getElementById('femail').value.trim();
+    const mensaje = document.getElementById('fmensaje').value.trim();
+
+    if (!nombre || !email || !mensaje) {
+      msgError.textContent = 'Por favor completa los campos obligatorios (*).';
+      msgError.classList.add('show');
+      return;
+    }
+
+    btnEnviar.disabled = true;
+    btnEnviar.textContent = 'Enviando...';
+
+    try {
+      const res = await fetch('https://formspree.io/f/movklgdp', {
+        method: 'POST',
+        headers: { 'Content-Type':'application/json', 'Accept':'application/json' },
+        body: JSON.stringify({
+          nombre,
+          email,
+          telefono: document.getElementById('ftel').value || 'No proporcionado',
+          servicio: document.getElementById('fservicio').value || 'No especificado',
+          mensaje
+        })
       });
-    });
 
-    // Cerrar modal
-    cerrar.addEventListener("click", () => modal.style.display = "none");
+      if (res.ok) {
+        formWrap.style.display = 'none';
+        msgSuccess.classList.add('show');
+      } else {
+        throw new Error();
+      }
+    } catch {
+      msgError.textContent = 'Ocurrió un error. Por favor intenta de nuevo o escríbenos directamente por WhatsApp.';
+      msgError.classList.add('show');
+      btnEnviar.disabled = false;
+      btnEnviar.textContent = 'Enviar solicitud →';
+    }
+  });
 
-    // Navegar siguiente
-    flechaDer.addEventListener("click", () => {
-      indiceActual = (indiceActual + 1) % imgs.length;
-      modalImg.src = imgs[indiceActual].src;
+  /* ── SCROLL REVEAL ── */
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
     });
-
-    // Navegar anterior
-    flechaIzq.addEventListener("click", () => {
-      indiceActual = (indiceActual - 1 + imgs.length) % imgs.length;
-      modalImg.src = imgs[indiceActual].src;
-    });
-
-    // Cerrar al hacer clic fuera
-    window.addEventListener("click", e => {
-      if (e.target === modal) modal.style.display = "none";
-    });
-  </script>
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
